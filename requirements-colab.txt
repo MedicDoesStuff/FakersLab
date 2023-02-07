@@ -13,3 +13,4 @@ tensorboardX
 crc32c
 jsonschema
 PyYAML==6.0
+yt-dlp
