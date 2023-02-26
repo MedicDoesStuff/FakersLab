@@ -617,7 +617,7 @@ class ModelBase(object):
         plist = []
         for i in range(len(previews)):
             name, bgr = previews[i]
-            plist += [ (bgr, idx_backup_path / ( ('preview_%s.jpg') % (name))  )  ]
+            plist += [ (bgr, idx_backup_path / ( ('preview_%s.png') % (name))  )  ]
 
         if len(plist) != 0:
             self.get_preview_history_writer().post(plist, self.loss_history, self.iter)
@@ -675,16 +675,16 @@ class ModelBase(object):
                 previews = self.get_previews()
                 for i in range(len(previews)):
                     name, bgr = previews[i]
-                    plist += [ (bgr, self.get_strpath_storage_for_file('preview_%s.jpg' % (name) ) ) ]
+                    plist += [ (bgr, self.get_strpath_storage_for_file('preview_%s.png' % (name) ) ) ]
 
             if self.write_preview_history:
                 previews = self.get_history_previews()
                 for i in range(len(previews)):
                     name, bgr = previews[i]
                     path = self.preview_history_path / name
-                    plist += [ ( bgr, str ( path / ( f'{self.iter:07d}.jpg') ) ) ]
+                    plist += [ ( bgr, str ( path / ( f'{self.iter:07d}.png') ) ) ]
                     if not io.is_colab():
-                        plist += [ ( bgr, str ( path / ( '_last.jpg' ) )) ]
+                        plist += [ ( bgr, str ( path / ( '_last.png' ) )) ]
 
             if len(plist) != 0:
                 self.get_preview_history_writer().post(plist, self.loss_history, self.iter)
