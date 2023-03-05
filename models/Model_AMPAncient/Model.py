@@ -12,7 +12,7 @@ from models import ModelBase
 from samplelib import *
 from core.cv2ex import *
 
-class AMPModel(ModelBase):
+class AMPAncientModel(ModelBase):
 
     #override
     def on_initialize_options(self):
@@ -889,4 +889,4 @@ class AMPModel(ModelBase):
         import merger        
         return predictor_morph, (self.options['resolution'], self.options['resolution'], 3), merger.MergerConfigMasked(face_type=self.face_type, default_mode = 'overlay')
 
-Model = AMPModel
+Model = AMPAncientModel
