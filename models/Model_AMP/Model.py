@@ -375,10 +375,6 @@ class AMPModel(ModelBase):
                 x = self.upscale3(x)
                 x = self.res3(x)
 
-                x = tf.nn.sigmoid( nn.depth_to_space(tf.concat( (self.out_conv(x),
-                                                                 self.out_conv1(x),
-                                                                 self.out_conv2(x),
-                                                                 self.out_conv3(x)), nn.conv2d_ch_axis), 2) )
                 m = self.upscalem0(z)
                 m = self.upscalem1(m)
                 m = self.upscalem2(m)
