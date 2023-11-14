@@ -496,7 +496,7 @@ class ModelBase(object):
         return self.preview_history_writer
 
     def save(self):
-        Path( self.get_summary_path() ).write_text( self.get_summary_text() )
+        Path( self.get_summary_path() ).write_text( self.get_summary_text(), encoding='utf-8' )
 
         self.onSave()
 
@@ -511,7 +511,16 @@ class ModelBase(object):
             'sample_for_preview' : self.sample_for_preview,
             'choosed_gpu_indexes' : self.choosed_gpu_indexes,
         }
-        pathex.write_bytes_safe (self.model_data_path, pickle.dumps(model_data) )
+
+        # Create a temporary file path
+        temp_model_data_path = Path(self.model_data_path).with_suffix('.tmp')
+
+        # Write the serialized model data to the temporary file
+        with open(temp_model_data_path, 'wb') as f:
+            pickle.dump(model_data, f)
+
+        # Use write_bytes_safe to move the temp file to the final destination
+        pathex.write_bytes_safe(Path(self.model_data_path), temp_model_data_path)
 
         if self.autobackup_hour != 0:
             diff_hour = int ( (time.time() - self.autobackup_start_time) // 3600 )
