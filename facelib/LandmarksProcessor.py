@@ -414,7 +414,7 @@ def get_image_eye_mask (image_shape, image_landmarks):
 
     hull_mask = np.zeros( (h,w,1),dtype=np.float32)
 
-    image_landmarks = image_landmarks.astype(np.int)
+    image_landmarks = image_landmarks.astype(np.int64)
 
     cv2.fillConvexPoly( hull_mask, cv2.convexHull( image_landmarks[36:42]), (1,) )
     cv2.fillConvexPoly( hull_mask, cv2.convexHull( image_landmarks[42:48]), (1,) )
@@ -437,7 +437,7 @@ def get_image_mouth_mask (image_shape, image_landmarks):
 
     hull_mask = np.zeros( (h,w,1),dtype=np.float32)
 
-    image_landmarks = image_landmarks.astype(np.int)
+    image_landmarks = image_landmarks.astype(np.int64)
 
     cv2.fillConvexPoly( hull_mask, cv2.convexHull( image_landmarks[48:60]), (1,) )
 
